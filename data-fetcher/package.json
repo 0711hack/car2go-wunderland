@@ -1,0 +1,23 @@
+{
+  "name": "data-fetcher",
+  "version": "1.0.0",
+  "description": "car2go data fetcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint . && ./node_modules/.bin/mocha test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/0711hack/car2go-wunderland.git"
+  },
+  "author": "0711hack",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0711hack/car2go-wunderland/issues"
+  },
+  "homepage": "https://github.com/0711hack/car2go-wunderland#readme",
+  "dependencies": {
+    "eslint": "^4.9.0",
+    "mocha": "^4.0.1"
+  }
+}
