@@ -1,13 +1,13 @@
-const min_lat = 40.7497;
-const min_lon = -73.9916;
-const factor_lon = 111194.93;
-const factor_lat = 84217.17;
+const minLat = 40.7497;
+const minLon = -73.9916;
+const factorLat = 84217.17;
+const factorLon = 111194.93;
 
 exports.convert = (lat, lon) => {
   'use strict';
   
-  let y = (lon - min_lon) * factor_lon;
-  let x = (lat - min_lat) * factor_lat;
+  let y = (lon - minLon) * factorLon;
+  let x = (lat - minLat) * factorLat;
   return ({x, y});
 };
 
