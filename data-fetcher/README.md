@@ -27,3 +27,14 @@ userId : REPLACE
 accessToken : REPLACE
 Content-Type : application/json
 ```
+
+## Config
+
+Create `config.json` in this folder with the following structure:
+
+```json
+{
+  "loginEmail": "REPLACE@car2go.io",
+  "loginPassword": "REPLACE"
+}
+```

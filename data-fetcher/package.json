@@ -4,7 +4,8 @@
   "description": "car2go data fetcher",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && ./node_modules/.bin/mocha test/*.js"
+    "test": "eslint . && ./node_modules/.bin/mocha test/*.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
   },
   "homepage": "https://github.com/0711hack/car2go-wunderland#readme",
   "dependencies": {
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "eslint": "^4.9.0",
