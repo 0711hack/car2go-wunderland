@@ -1,0 +1,116 @@
+{
+"ascOpcuaProfiles": [
+{
+"id":"1",
+"lrXPos":"-100",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},{
+"id":"2",
+"lrXPos":"05",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},{
+"id":"3",
+"lrXPos":"200",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},{
+"id":"4",
+"lrXPos":"220",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},{
+"id":"5",
+"lrXPos":"225",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},{
+"id":"6",
+"lrXPos":"230",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},{
+"id":"7",
+"lrXPos":"235",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},
+{
+"id":"8",
+"lrXPos":"240",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},
+{
+"id":"9",
+"lrXPos":"244",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+},
+{
+"id":"10",
+"lrXPos":"249",
+"lrYPos":"50",
+"lrZPos":"-626",
+"lrAux1Pos": "250",
+"lrPathVel":"1000",
+"lrPathAcc":"10000",
+"lrPathDec":"10000",
+"lrBlendingRadius":"100"
+}
+],
+
+"w_Mode_Select_Opc":"7",
+"x_StartMode":true,
+"x_AbortMode":false,
+"x_ResetErrorOpc":false,
+"eSelectAxisOpc":"Z",
+"x_GripperOu":true,
+"w_GripperOpenValue":"150"
+}
