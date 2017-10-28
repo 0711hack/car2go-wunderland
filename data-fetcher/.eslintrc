@@ -16,7 +16,7 @@
     "no-console": 0,
     // strict
     "strict": [
-      2,
+      0,
       "function"
     ],
     // formatting, spaces, operators

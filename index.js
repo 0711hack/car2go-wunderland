@@ -2,7 +2,7 @@ const data = require('./data-fetcher');
 const wonderland = require('./wonderland/lib/wonderland.js');
 const robot = require('./robot-controller/controller.js');
 const lib = require('./lib.js');
-
+let running = true;
 
 const processMoves = moves => {
   if (moves.length === 0) {
@@ -15,9 +15,12 @@ const processMoves = moves => {
     .then(() => processMoves(tail));
 };
 
-const process = () => {
+const loop = () => {
   'use strict';
-  // TODO logging console.log('process()');
+  if (running === false) {
+    return true;
+  }
+  // TODO logging console.log('loop()');
   return wonderland.load()
     .then(data.fetchData)
     .then(list => {
@@ -35,8 +38,17 @@ const process = () => {
         setTimeout(resolve, 1000);
       });
     })
-    .then(process);
+    .then(loop);
 };
 
-process()
+loop()
   .then(() => console.log('done'));
+
+process.on("SIGINT", function() {
+  if (running === false) {
+    process.exit(0);
+  } else {
+    console.log('stop when state is saved next time, CTRL+C to kill');
+    running = false;
+  }
+});
