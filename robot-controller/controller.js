@@ -67,12 +67,14 @@ const awaitMove = () =>
       }
     });
 
-const move = (x, y, z) => 
+const move = (x1, y1, x2, y2) => 
   sendMove(x, y, z)
     .then(stopMove)
     .then(awaitMove);
 
 const grip = close => {};
+
+exports.move = (x1, y1, x2, y2) => move(x1, y1, x2, y2);
 
 
 //x -250 - 250
