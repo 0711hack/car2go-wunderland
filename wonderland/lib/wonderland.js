@@ -37,11 +37,11 @@ function parkVehicles(vehicles) {
 
 exports.load = function() {
   'use strict';
-  currentState = JSON.parse(fs.readFileSync("state.json"));
+  currentState = JSON.parse(fs.readFileSync(`${__dirname}/../state.json`));
 };
 exports.save = function() {
   'use strict';
-  fs.writeFileSync("state.json", JSON.stringify(currentState));
+  fs.writeFileSync(`${__dirname}/../state.json`, JSON.stringify(currentState));
 };
 exports.setVehicles = function(vehicles) {
   'use strict';
