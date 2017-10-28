@@ -16,7 +16,7 @@
     "no-console": 0,
     // strict
     "strict": [
-      0,
+      2,
       "function"
     ],
     // formatting, spaces, operators
@@ -75,7 +75,7 @@
       }
     ],
     "camelcase": [
-      0,
+      1,
       {
         "properties": "always"
       }
