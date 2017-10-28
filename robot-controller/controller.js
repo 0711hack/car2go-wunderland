@@ -8,32 +8,32 @@ const sendMove = (x, y, z) =>
     uri: `${ENDPOINT_URL}/v1/opcua`,
     json: true,
     body: {
-      "ascOpcuaProfiles": [{
-        "id":"1",
-        "lrXPos": `${x}`,
-        "lrYPos": `${y}`,
-        "lrZPos": `${z}`,
-        "lrAux1Pos": "250",
-        "lrPathVel":"1000",
-        "lrPathAcc":"10000",
-        "lrPathDec":"10000",
-        "lrBlendingRadius":"100"
+      ascOpcuaProfiles: [{
+        id: '1',
+        lrXPos: `${x}`,
+        lrYPos: `${y}`,
+        lrZPos: `${z}`,
+        lrAux1Pos: '250',
+        lrPathVel: '1000',
+        lrPathAcc: '10000',
+        lrPathDec: '10000',
+        lrBlendingRadius: '100'
       }, {
-        "id":"2",
-        "lrXPos": `${x}`,
-        "lrYPos": `${y}`,
-        "lrZPos": `${z}`,
-        "lrAux1Pos": "250",
-        "lrPathVel":"0",
-        "lrPathAcc":"10000",
-        "lrPathDec":"10000",
-        "lrBlendingRadius":"100"
+        id: '2',
+        lrXPos: `${x}`,
+        lrYPos: `${y}`,
+        lrZPos: `${z}`,
+        lrAux1Pos: '250',
+        lrPathVel: '0', // set velocity to zero to stop the move
+        lrPathAcc: '10000',
+        lrPathDec: '10000',
+        lrBlendingRadius: '100'
       }],
-      "w_Mode_Select_Opc":"7",
-      "x_StartMode":true,
-      "x_AbortMode":false,
-      "x_ResetErrorOpc":false,
-      "eSelectAxisOpc":"Z"
+      w_Mode_Select_Opc: '7',
+      x_StartMode: true,
+      x_AbortMode: false,
+      x_ResetErrorOpc: false,
+      eSelectAxisOpc: 'Z'
     }
   });
 
@@ -43,12 +43,12 @@ const stopMove = () =>
     uri: `${ENDPOINT_URL}/v1/opcua`,
     json: true,
     body: {
-      "ascOpcuaProfiles": [],
-      "w_Mode_Select_Opc":"7",
-      "x_StartMode":false,
-      "x_AbortMode":false,
-      "x_ResetErrorOpc":false,
-      "eSelectAxisOpc":"Z"
+      ascOpcuaProfiles: [],
+      w_Mode_Select_Opc: '7',
+      x_StartMode: false,
+      x_AbortMode: false,
+      x_ResetErrorOpc: false,
+      eSelectAxisOpc: 'Z'
     }
   });
 
@@ -57,8 +57,8 @@ const awaitMove = () =>
     method: 'GET',
     uri: `${ENDPOINT_URL}/v1/opcua/module/state`,
     json: true
-  }).
-    then((body) => {
+  })
+    .then((body) => {
       console.log(body.xDone);
       if (body.xDone === true) {
         return body;
