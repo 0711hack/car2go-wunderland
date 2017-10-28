@@ -1,4 +1,4 @@
-const minLat = 40.7687;
+const minLat = 40.7497;
 const minLon = -73.9916;
 const factorLat = 84217.17; //m
 const factorLon = 111194.93; //m
