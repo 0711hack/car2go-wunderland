@@ -1,7 +1,7 @@
 const request = require('request-promise-native');
 
-const ENDPOINT_URL = 'http://10.200.21.55:8080'; // sim
-//const ENDPOINT_URL = 'http://10.200.21.54:8080'; // prod
+//const ENDPOINT_URL = 'http://10.200.21.55:8080'; // sim
+const ENDPOINT_URL = 'http://10.200.21.54:8080'; // prod
 //const ENDPOINT_URL = 'http://10.200.20.80:8080'; // local
 const Z_DOWN = '-650';
 const Z_UP = '-625';
@@ -215,4 +215,16 @@ const move = (x1, y1, x2, y2) => {
   return p;
 };
 
+const position = (x1, y1) => {
+  const p = lastXY
+    .then(([x, y]) => 
+      sendMove(x, y, x1, y1)
+        .then(stopMove)
+        .then(awaitDone)
+    );
+  lastXY = Promise.resolve([x1, y1]);
+  return p;
+};
+
 exports.move = move;
+exports.position = position;
