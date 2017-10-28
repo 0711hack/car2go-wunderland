@@ -13,12 +13,11 @@ const convertLocations = vehicles => {
   });
 };
 
-car2go.login()
-  .then(car2go.fetchVehicles)
-  .then(convertLocations)
-  .then(console.log)
-  .catch(err => {
-    'use strict';
-    console.log(`Program failed due to: ${err}`);
-  });
+exports.fetchData = () => {
+  'use strict';
+  return car2go.login()
+    .then(car2go.fetchVehicles)
+    .then(convertLocations);
+};
+
 
