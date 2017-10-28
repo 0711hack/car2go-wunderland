@@ -18,7 +18,7 @@ const parseVehicles = res => {
   'use strict';
   return res.serviceResponse.payLoadData.vehicles.map(vehicle => {
     return {
-      id: vehicle['_id'],
+      id: vehicle.plate,
       lat: vehicle.lat,
       lon: vehicle.lon
     };

@@ -1,6 +1,7 @@
 const data = require('./data-fetcher');
 const wonderland = require('./wonderland/lib/wonderland.js');
 const robot = require('./robot-controller/controller.js');
+const lib = require('./lib.js');
 
 const processMoves = moves => {
   if (moves.length === 0) {
@@ -19,13 +20,7 @@ const processMoves = moves => {
     });
 };
 
-const safeScale = v => 
-  Math.max(0, Math.min(430, v * 0.1)); // TODO faktor richtig????
 
-const safeOffset = v =>
-  Math.max(-200, Math.min(230, v - 200));
-
-const safe = xy => ({x: safeOffset(safeScale(xy.x)), y: safeOffset(safeScale(xy.y))});
 
 const process = () => {
   'use strict';
@@ -38,7 +33,7 @@ const process = () => {
     })
     .then(wonderland.setVehicles)
     .then(() => wonderland.getMoves())
-    .then(moves => moves.map(move => ({from: safe(move.from), to: safe(move.to)})))
+    .then(moves => moves.map(move => ({from: lib.safe(move.from), to: lib.safe(move.to)})))
     .then(processMoves)
     .then(wonderland.save)
     .catch(err => {

@@ -1,15 +1,15 @@
 const request = require('request-promise-native');
 
-const ENDPOINT_URL = 'http://10.200.21.55:8080'; // sim
-//const ENDPOINT_URL = 'http://10.200.21.54:8080'; // prod
+//const ENDPOINT_URL = 'http://10.200.21.55:8080'; // sim
+const ENDPOINT_URL = 'http://10.200.21.54:8080'; // prod
 //const ENDPOINT_URL = 'http://10.200.20.80:8080'; // local
 const Z_DOWN = '-660';
-const Z_UP = '-630';
-const VELOCITY = '1000'; // 'max 1000'; // mm/sec
+const Z_UP = '-626';
+const VELOCITY = '50'; // TODO 'max 1000'; // mm/sec
 const ACC = '10000';
 const DEC = '10000';
-const AUX1POS = '90';
-const Blending_READIUS = '50';
+const AUX1POS = '87';
+const Blending_READIUS = '25';
 
 let lastXY = request({
   method: 'GET',
@@ -215,12 +215,14 @@ const move = (x1, y1, x2, y2) => {
   return p;
 };
 
-const position = (x1, y1) => {
+const position = (x1, y1, close) => {
   const p = lastXY
     .then(([x, y]) => 
       sendMove(x, y, x1, y1)
         .then(stopMove)
         .then(awaitDone)
+        .then(() => sendGrip(close))
+        .then(() => timer(500))
     );
   lastXY = Promise.resolve([x1, y1]);
   return p;

@@ -1,4 +1,4 @@
 const robot = require('./controller.js');
 
-robot.position(-200, -200)
+robot.position(230, 230, true)
   .then(() => console.log('done'));

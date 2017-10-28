@@ -1,6 +1,6 @@
 const fs = require('fs');
-const maxVehicleCount = 1; // TODO back to 9
-const park_offset = 500; // 5 cm in mm
+const maxVehicleCount = 3; // TODO back to 9
+const park_offset = 255; // 5 cm
 var currentState = []
 var targetState = []
 
@@ -27,7 +27,7 @@ function parkVehicles(vehicles) {
   for (var i = 0; i < maxVehicleCount; i++) {
     if (filledVehicles[i] === undefined) {
       filledVehicles[i] = {};
-      filledVehicles[i].x = 0;
+      filledVehicles[i].x = 2121;
       filledVehicles[i].y = parkedCars * park_offset;
       parkedCars++;
     }
