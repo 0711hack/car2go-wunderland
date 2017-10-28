@@ -133,7 +133,8 @@ const sendMove = (x1, y1, x2, y2, close) => {
       x_AbortMode: false,
       x_ResetErrorOpc: false,
       eSelectAxisOpc: 'Z',
-      w_GripperOpenValue: (close === true) ? '0' : '255'
+      x_GripperOut: close,
+      w_GripperOpenValue: (close === true) ? '50' : '150'
     }
   });
 };
