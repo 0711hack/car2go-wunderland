@@ -1,6 +1,6 @@
 const fs = require('fs');
-const maxVehicleCount = 10;
-const park_offset = 100;
+const maxVehicleCount = 9;
+const park_offset = 500; // 5 cm in mm
 var currentState = []
 var targetState = []
 
@@ -38,10 +38,12 @@ function parkVehicles(vehicles) {
 exports.load = function() {
   'use strict';
   currentState = JSON.parse(fs.readFileSync(`${__dirname}/../state.json`));
+  return Promise.resolve(true);
 };
 exports.save = function() {
   'use strict';
   fs.writeFileSync(`${__dirname}/../state.json`, JSON.stringify(currentState));
+  return Promise.resolve(true);
 };
 exports.setVehicles = function(vehicles) {
   'use strict';

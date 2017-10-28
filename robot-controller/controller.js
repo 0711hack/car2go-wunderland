@@ -17,18 +17,18 @@ let lastXY = request({
   json: true
 })
   .then((body) => {
-    console.log(`lastXY: body := ${JSON.stringify(body.alrActPos)}`);
+    // TODO logging console.log(`lastXY: body := ${JSON.stringify(body.alrActPos)}`);
     const [x, y] = body.alrActPos;
     return [`${x}`, `${y}`];
   });
 
 const timer = ms => new Promise(function(resolve) {
-  console.log(`timer(${ms})`);
+  // TODO logging console.log(`timer(${ms})`);
   setTimeout(() => resolve(), ms);
 });
 
 const sendGrip = close => {
-  console.log(`sendGrip(${close})`);
+  // TODO logging console.log(`sendGrip(${close})`);
   return request({
     method: 'POST',
     uri: `${ENDPOINT_URL}/v1/opcua`,
@@ -46,8 +46,8 @@ const sendGrip = close => {
   });
 };
 
-const sendMove = (x1, y1, x2, y2, close) => {
-  console.log(`sendMove(${x1}, ${y1}, ${x2}, ${y2}, ${close})`);
+const sendMove = (x1, y1, x2, y2) => {
+  console.log(`sendMove(${x1}, ${y1}, ${x2}, ${y2})`);
   return request({
     method: 'POST',
     uri: `${ENDPOINT_URL}/v1/opcua`,
@@ -164,7 +164,7 @@ const sendMove = (x1, y1, x2, y2, close) => {
 };
 
 const stopMove = () => {
-  console.log('stopMove()');
+  // TODO logging console.log('stopMove()');
   return request({
     method: 'POST',
     uri: `${ENDPOINT_URL}/v1/opcua`,
@@ -181,14 +181,14 @@ const stopMove = () => {
 };
 
 const awaitDone = () => {
-  console.log('awaitDone()');
+  // TODO logging console.log('awaitDone()');
   return request({
     method: 'GET',
     uri: `${ENDPOINT_URL}/v1/opcua/module/state`,
     json: true
   })
     .then((body) => {
-      console.log(`awaitDone(): xDone := ${body.xDone}`);
+      // TODO logging console.log(`awaitDone(): xDone := ${body.xDone}`);
       if (body.xDone === true) {
         return body;
       } else {
@@ -216,9 +216,3 @@ const move = (x1, y1, x2, y2) => {
 };
 
 exports.move = move;
-
-//x -250 - 250
-//y -210 - 210
-//z -685 - -625
-move(-100, 50, -200, 100)
-  .then(() => console.log('done'));
