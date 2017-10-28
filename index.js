@@ -3,6 +3,7 @@ const wonderland = require('./wonderland/lib/wonderland.js');
 const robot = require('./robot-controller/controller.js');
 const lib = require('./lib.js');
 
+
 const processMoves = moves => {
   if (moves.length === 0) {
   // TODO logging console.log(`processMoves()`);
@@ -11,16 +12,8 @@ const processMoves = moves => {
   const [head, ...tail] = moves;
   // TODO logging console.log(`processMoves(${JSON.stringify(head)})`);
   return robot.move(head.from.x, head.from.y, head.to.x, head.to.y)
-    .then(() => {
-      if (tail.length === 0) {
-        return true;
-      } else {
-        return processMoves(tail)
-      }
-    });
+    .then(() => processMoves(tail));
 };
-
-
 
 const process = () => {
   'use strict';
@@ -32,7 +25,7 @@ const process = () => {
       return list;
     })
     .then(wonderland.setVehicles)
-    .then(() => wonderland.getMoves())
+    .then(wonderland.getMoves)
     .then(moves => moves.map(move => ({from: lib.safe(move.from), to: lib.safe(move.to)})))
     .then(processMoves)
     .then(wonderland.save)
