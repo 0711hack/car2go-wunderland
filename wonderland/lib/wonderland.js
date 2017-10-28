@@ -1,8 +1,8 @@
 const fs = require('fs');
 const maxVehicleCount = 10;
+const park_offset = 100;
 var currentState = []
 var targetState = []
-const park_offset = 100;
 
 function array_diff(left, rigth) {
   var result = [];
@@ -45,7 +45,6 @@ exports.save = function() {
 };
 exports.setVehicles = function(vehicles) {
   'use strict';
-  //var raw_data = JSON.parse(fs.readFileSync("mock.json"));
   if(vehicles.length > maxVehicleCount){
     vehicles = vehicles.slice(0,maxVehicleCount);
   }
