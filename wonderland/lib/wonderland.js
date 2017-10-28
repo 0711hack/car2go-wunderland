@@ -1,5 +1,5 @@
 const fs = require('fs');
-const maxVehicleCount = 3; // TODO back to 9
+const maxVehicleCount = 6; // TODO back to 9
 const park_offset = 255; // 5 cm
 var currentState = []
 var targetState = []
