@@ -43,13 +43,13 @@ exports.save = function() {
   'use strict';
   fs.writeFileSync("state.json", JSON.stringify(currentState));
 };
-exports.setVehicles = function() {
+exports.setVehicles = function(vehicles) {
   'use strict';
-  var raw_data = JSON.parse(fs.readFileSync("mock.json"));
-  if(raw_data.length > maxVehicleCount){
-    raw_data = raw_data.slice(0,maxVehicleCount);
+  //var raw_data = JSON.parse(fs.readFileSync("mock.json"));
+  if(vehicles.length > maxVehicleCount){
+    vehicles = vehicles.slice(0,maxVehicleCount);
   }
-  targetState = parkVehicles(raw_data);
+  targetState = parkVehicles(vehicles);
 
 };
 exports.getMoves = function() {
