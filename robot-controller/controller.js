@@ -1,10 +1,10 @@
 const request = require('request-promise-native');
 
-//const ENDPOINT_URL = 'http://10.200.21.55:8080'; // sim
-const ENDPOINT_URL = 'http://10.200.21.54:8080'; // prod
+const ENDPOINT_URL = 'http://10.200.21.55:8080'; // sim
+//const ENDPOINT_URL = 'http://10.200.21.54:8080'; // prod
 //const ENDPOINT_URL = 'http://10.200.20.80:8080'; // local
-const Z_DOWN = '-650';
-const Z_UP = '-625';
+const Z_DOWN = '-660';
+const Z_UP = '-630';
 const VELOCITY = '1000'; // 'max 1000'; // mm/sec
 const ACC = '10000';
 const DEC = '10000';

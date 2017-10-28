@@ -20,10 +20,10 @@ const processMoves = moves => {
 };
 
 const safeScale = v => 
-  Math.max(0, Math.min(400, v * 0.1)); // TODO faktor richtig????
+  Math.max(0, Math.min(430, v * 0.1)); // TODO faktor richtig????
 
 const safeOffset = v =>
-  Math.max(-200, Math.min(200, v - 200));
+  Math.max(-200, Math.min(230, v - 200));
 
 const safe = xy => ({x: safeOffset(safeScale(xy.x)), y: safeOffset(safeScale(xy.y))});
 
@@ -32,10 +32,10 @@ const process = () => {
   // TODO logging console.log('process()');
   return wonderland.load()
     .then(data.fetchData)
-    /* TODO DEBUG ONLY.then(list => {
+    .then(list => {
       console.log(list);
       return list;
-    })*/
+    })
     .then(wonderland.setVehicles)
     .then(() => wonderland.getMoves())
     .then(moves => moves.map(move => ({from: safe(move.from), to: safe(move.to)})))
