@@ -2,15 +2,27 @@ const request = require('request-promise-native');
 
 const ENDPOINT_URL = 'http://10.200.21.55:8080';
 const Z_DOWN = '-685';
-const Z_UP = '-670';
-const VELOCITY = '1000';
+const Z_UP = '-650';
+const VELOCITY = '50'; // '1000'; // mm/sec
 const ACC = '10000';
 const DEC = '10000';
 const AUX1POS = '250';
 const Blending_READIUS = '100';
 
-const sendMove = (x1, y1, x2, y2) => 
-  request({
+let lastXY = request({
+  method: 'GET',
+  uri: `${ENDPOINT_URL}/v1/opcua/module/state`,
+  json: true
+})
+  .then((body) => {
+    console.log(`lastXY: body := ${JSON.stringify(body.alrActPos)}`);
+    const [x, y] = body.alrActPos;
+    return [`${x}`, `${y}`];
+  });
+
+const sendMove = (x1, y1, x2, y2, close) => {
+  console.log(`sendMove(${x1}, ${y1}, ${x2}, ${y2}, ${close})`);
+  return request({
     method: 'POST',
     uri: `${ENDPOINT_URL}/v1/opcua`,
     json: true,
@@ -19,7 +31,7 @@ const sendMove = (x1, y1, x2, y2) =>
         id: '1',
         lrXPos: `${x1}`,
         lrYPos: `${y1}`,
-        lrZPos: Z_DOWN,
+        lrZPos: Z_UP,
         lrAux1Pos: AUX1POS,
         lrPathVel: VELOCITY,
         lrPathAcc: ACC,
@@ -27,8 +39,8 @@ const sendMove = (x1, y1, x2, y2) =>
         lrBlendingRadius: Blending_READIUS
       }, {
         id: '2',
-        lrXPos: `${x1}`,
-        lrYPos: `${y1}`,
+        lrXPos: `${x2}`,
+        lrYPos: `${y2}`,
         lrZPos: Z_UP,
         lrAux1Pos: AUX1POS,
         lrPathVel: VELOCITY,
@@ -39,7 +51,7 @@ const sendMove = (x1, y1, x2, y2) =>
         id: '3',
         lrXPos: `${x2}`,
         lrYPos: `${y2}`,
-        lrZPos: Z_UP,
+        lrZPos: Z_DOWN,
         lrAux1Pos: AUX1POS,
         lrPathVel: VELOCITY,
         lrPathAcc: ACC,
@@ -51,7 +63,7 @@ const sendMove = (x1, y1, x2, y2) =>
         lrYPos: `${y2}`,
         lrZPos: Z_DOWN,
         lrAux1Pos: AUX1POS,
-        lrPathVel: VELOCITY,
+        lrPathVel: '0', // set velocity to zero to stop the move
         lrPathAcc: ACC,
         lrPathDec: DEC,
         lrBlendingRadius: Blending_READIUS
@@ -65,17 +77,70 @@ const sendMove = (x1, y1, x2, y2) =>
         lrPathAcc: ACC,
         lrPathDec: DEC,
         lrBlendingRadius: Blending_READIUS
+      }, {
+        id: '6',
+        lrXPos: `${x2}`,
+        lrYPos: `${y2}`,
+        lrZPos: Z_DOWN,
+        lrAux1Pos: AUX1POS,
+        lrPathVel: '0', // set velocity to zero to stop the move
+        lrPathAcc: ACC,
+        lrPathDec: DEC,
+        lrBlendingRadius: Blending_READIUS
+      }, {
+        id: '7',
+        lrXPos: `${x2}`,
+        lrYPos: `${y2}`,
+        lrZPos: Z_DOWN,
+        lrAux1Pos: AUX1POS,
+        lrPathVel: '0', // set velocity to zero to stop the move
+        lrPathAcc: ACC,
+        lrPathDec: DEC,
+        lrBlendingRadius: Blending_READIUS
+      }, {
+        id: '8',
+        lrXPos: `${x2}`,
+        lrYPos: `${y2}`,
+        lrZPos: Z_DOWN,
+        lrAux1Pos: AUX1POS,
+        lrPathVel: '0', // set velocity to zero to stop the move
+        lrPathAcc: ACC,
+        lrPathDec: DEC,
+        lrBlendingRadius: Blending_READIUS
+      }, {
+        id: '9',
+        lrXPos: `${x2}`,
+        lrYPos: `${y2}`,
+        lrZPos: Z_DOWN,
+        lrAux1Pos: AUX1POS,
+        lrPathVel: '0', // set velocity to zero to stop the move
+        lrPathAcc: ACC,
+        lrPathDec: DEC,
+        lrBlendingRadius: Blending_READIUS
+      }, {
+        id: '10',
+        lrXPos: `${x2}`,
+        lrYPos: `${y2}`,
+        lrZPos: Z_DOWN,
+        lrAux1Pos: AUX1POS,
+        lrPathVel: '0', // set velocity to zero to stop the move
+        lrPathAcc: ACC,
+        lrPathDec: DEC,
+        lrBlendingRadius: Blending_READIUS
       }],
       w_Mode_Select_Opc: '7',
       x_StartMode: true,
       x_AbortMode: false,
       x_ResetErrorOpc: false,
-      eSelectAxisOpc: 'Z'
+      eSelectAxisOpc: 'Z',
+      w_GripperOpenValue: (close === true) ? '0' : '255'
     }
   });
+};
 
-const stopMove = () => 
-  request({
+const stopMove = () => {
+  console.log('stopMove()');
+  return request({
     method: 'POST',
     uri: `${ENDPOINT_URL}/v1/opcua`,
     json: true,
@@ -88,30 +153,40 @@ const stopMove = () =>
       eSelectAxisOpc: 'Z'
     }
   });
+};
 
-const awaitMove = () => 
-  request({
+const awaitMove = () => {
+  console.log('awaitMove()');
+  return request({
     method: 'GET',
     uri: `${ENDPOINT_URL}/v1/opcua/module/state`,
     json: true
   })
     .then((body) => {
-      console.log(body.xDone);
+      console.log(`awaitMove(): xDone := ${body.xDone}`);
       if (body.xDone === true) {
         return body;
       } else {
         return awaitMove();
       }
     });
+};
 
-const move = (x1, y1, x2, y2) => 
-  sendMove(x1, y1, x2, y2)
-    .then(stopMove)
-    .then(awaitMove);
+const move = (x1, y1, x2, y2) => {
+  const p = lastXY
+    .then(([x, y]) => 
+      sendMove(x, y, x1, y1, true)
+        .then(stopMove)
+        .then(awaitMove)
+        .then(() => sendMove(x1, y1, x2, y2, false))
+        .then(stopMove)
+        .then(awaitMove)
+    );
+  lastXY = Promise.resolve([x2, y2]);
+  return p;
+};
 
-const grip = close => {};
-
-exports.move = (x1, y1, x2, y2) => move(x1, y1, x2, y2);
+exports.move = move;
 
 
 //x -250 - 250
