@@ -69,7 +69,7 @@ exports.getMoves = function () {
     });
   }
   let newMoves = [];
-  moves.each((move, idx) => {
+  moves.forEach((move, idx) => {
     let toRemove = false;
     for (let j = 0; j < currentState.length; j++) {
       if (isNearby(move.to.x, move.to.y, currentState[j].x, currentState[j].y)) {
@@ -87,6 +87,7 @@ exports.getMoves = function () {
         if (targetState[k].x === move.to.x && targetState[k].y === move.to.y) {
           targetState[k].x = move.from.x;
           targetState[k].y = move.from.y;
+          break;
         }
       }
     } else {
