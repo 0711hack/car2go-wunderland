@@ -8,7 +8,7 @@ describe('Testsuite', () => {
     it('empty array', () => {
       assert.deepEqual([], index.filterLocations([]));
     });
-    it('filter one', () => {
+    it('filter cars near parking lot', () => {
       assert.deepEqual([{x: 100, y: 100}], index.filterLocations([{x: 100, y: 100}, {x: 2000, y: 2000}]));
     });
   });
@@ -22,10 +22,10 @@ describe('Testsuite', () => {
     it('not, reverse', () => {
       assert.equal(false, index.areDuplicate({x: 50, y: 1000}, {x: 50, y: 100}));
     });
-    it('in', () => {
+    it('cars near each other', () => {
       assert.equal(true, index.areDuplicate({x: 50, y: 100}, {x: 50, y: 200}));
     });
-    it('in, reverse', () => {
+    it('cars near each other, reverse', () => {
       assert.equal(true, index.areDuplicate({x: 50, y: 200}, {x: 50, y: 100}));
     });
   });
@@ -39,10 +39,10 @@ describe('Testsuite', () => {
     it('two exact same items', () => {
       assert.deepEqual([{id: 'id2', x: 50, y: 100}], index.removeDuplicates([{id: 'id1', x: 50, y: 100}, {id: 'id2', x: 50, y: 100}]));
     });
-    it('two same items', () => {
+    it('two nearby items', () => {
       assert.deepEqual([{id: 'id2', x: 50, y: 200}], index.removeDuplicates([{id: 'id1', x: 50, y: 100}, {id: 'id2', x: 50, y: 200}]));
     });
-    it('two same items and a third', () => {
+    it('two nearby items and a third', () => {
       assert.deepEqual([{id: 'id2', x: 50, y: 200}, {id: 'id3', x: 500, y: 1000}], index.removeDuplicates([{id: 'id1', x: 50, y: 100}, {id: 'id2', x: 50, y: 200}, {id: 'id3', x: 500, y: 1000}]));
     });
   });
