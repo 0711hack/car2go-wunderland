@@ -205,7 +205,7 @@ const move = (x1, y1, x2, y2) => {
         .then(awaitDone)
         .then(() => sendGrip(false))
         .then(() => timer(500))
-        .then(() => sendMove(x1, y1, x2, y2))
+        .then(() => sendMove(x1, y1, x2 - 1.7, y2)) // offset slightly because the grapper moves the car forward a little bit each time
         .then(stopMove)
         .then(awaitDone)
         .then(() => sendGrip(true))
