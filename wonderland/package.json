@@ -7,9 +7,13 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test/*.js"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.9.0",
+    "mocha": "^4.0.1"
+  }
 }

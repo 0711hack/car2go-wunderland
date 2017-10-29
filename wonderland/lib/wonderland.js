@@ -7,7 +7,7 @@ var targetState = []
 function array_diff(left, right) {
   var result = [];
   for (var i = 0; i < left.length; i++) {
-    var miss = true;
+    let miss = true;
     for (var j = 0; j < right.length; j++) {
       if (left[i].x === right[j].x && left[i].y === right[j].y) {
         miss = false;
@@ -19,6 +19,7 @@ function array_diff(left, right) {
   }
   return result;
 }
+exports.array_diff = array_diff;
 
 function parkVehicles(vehicles) {
   'use strict';
@@ -53,16 +54,16 @@ exports.setVehicles = function (vehicles) {
   targetState = parkVehicles(vehicles);
   
 };
+
 exports.getMoves = function () {
   'use strict';
   var moves = [];
-  
   var changesCurrent = array_diff(targetState, currentState);
   var changesTarget = array_diff(currentState, targetState);
   if (changesCurrent.length !== changesTarget.length) {
     console.log('Error, no match for length');
   }
-  for (var i = 0; i < changesCurrent.length; i++) {
+  for (let i = 0; i < changesCurrent.length; i++) {
     moves.push({
       from: currentState[changesCurrent[i]],
       to: targetState[changesTarget[i]]

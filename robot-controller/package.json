@@ -4,8 +4,7 @@
   "description": "",
   "main": "controller.js",
   "scripts": {
-    "test": "eslint . && ./node_modules/.bin/mocha test/*.js",
-    "start": "node controller.js"
+    "test": "eslint . && ./node_modules/.bin/mocha test/*.js"
   },
   "repository": {
     "type": "git",

@@ -22,7 +22,8 @@ const loop = () => {
   }
   // TODO logging console.log('loop()');
   return wonderland.load()
-    .then(data.fetchData)
+    //.then(data.fetchData) // TODO get data from car2go api
+    .then(data.fetchRandomData)
     .then(list => {
       console.log(list);
       return list;

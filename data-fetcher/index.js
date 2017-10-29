@@ -37,3 +37,11 @@ exports.fetchData = () => {
     .then(filterLocations)
     .then(removeDuplicates);
 };
+
+exports.fetchRandomData = () => {
+  'use strict';
+  return car2go.fetchRandomVehicles()
+    .then(convertLocations)
+    .then(filterLocations)
+    .then(removeDuplicates);
+};

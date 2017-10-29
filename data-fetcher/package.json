@@ -4,8 +4,7 @@
   "description": "car2go data fetcher",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && ./node_modules/.bin/mocha test/*.js",
-    "start": "node index.js"
+    "test": "eslint . && ./node_modules/.bin/mocha test/*.js"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,6 @@
 const request = require('request-promise-native');
 const config = require('../config.json');
+const converter = require('./converter.js');
 
 const parseLogin = res => {
   'use strict';
@@ -57,4 +58,30 @@ exports.fetchVehicles = authData => {
     },
     json: true
   }).then(parseVehicles);
+};
+
+const generateRandomVehicle = id => {
+  const latlon = converter.randomLatLon();
+  return {
+    id: id,
+    lat: latlon.lat,
+    lon: latlon.lon
+  };
+};
+
+exports.fetchRandomVehicles = () => {
+  return Promise.resolve([
+    generateRandomVehicle('veh-1'),
+    generateRandomVehicle('veh-2'),
+    generateRandomVehicle('veh-3'),
+    generateRandomVehicle('veh-4'),
+    generateRandomVehicle('veh-5'),
+    generateRandomVehicle('veh-6'),
+    generateRandomVehicle('veh-7'),
+    generateRandomVehicle('veh-8'),
+    generateRandomVehicle('veh-9'),
+    generateRandomVehicle('veh-10'),
+    generateRandomVehicle('veh-11'),
+    generateRandomVehicle('veh-12')
+  ]);
 };
